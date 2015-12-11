@@ -16,8 +16,13 @@ import sys
 import os
 import operator
 import nltk
+from nltk.classify.scikitlearn import SklearnClassifier
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC,LinearSVC
 
-
+trainphraseOpinions={}
+testphraseOpinions={}
 # getting hyponyms of the selected featurewords
 def GetHyponyms(index,feature,featureSets):
 	featureSet=[]
@@ -124,10 +129,10 @@ def GetPhrases(taggedTokens):
 	return phrases
 	
 
-def GetOpinions(phrases):
+def GetOpinions(phrases,phraseOpinions):
 	positiveWords=[]
 	negativeWords=[]
-	phraseOpinions={}
+	#phraseOpinions={}
 	for line in open('positive-words.txt'):
 		positiveWords.append(line)
 		
@@ -136,27 +141,25 @@ def GetOpinions(phrases):
 	
 	positiveWords=map(lambda s: s.strip(), positiveWords)
 	negativeWords=map(lambda s: s.strip(), negativeWords)
-	polarity=0
+	
 	for phrase in phrases:
+		polarity=0
 		words=phrase.split(' ')
-
 		for word in words:
-			
 			if word.encode('utf-8') in positiveWords:
-				
 				polarity=polarity+1
 			elif word.encode('utf-8') in negativeWords:
-				
 				polarity=polarity-1
 		if polarity>0 :
 			phraseOpinions[phrase]='good'
 		elif polarity<0:
 			phraseOpinions[phrase]='bad'
-		else:
-			phraseOpinions[phrase]='neutral'
+		#else:
+			#phraseOpinions[phrase]='neutral'
+		
 	return phraseOpinions
 		
-					
+selectedFeatures={}					
 def CheckForFeatureWords(allPhrases,featureSet):
 	flag=0
 	
@@ -165,6 +168,8 @@ def CheckForFeatureWords(allPhrases,featureSet):
 			for word in featureSet[feature]:
 			
 				if word in phrase:
+					selectedFeatures[phrase]=feature
+					
 				
 					flag=1
 		if flag==0:
@@ -172,8 +177,51 @@ def CheckForFeatureWords(allPhrases,featureSet):
 		else:
 			flag=0
 	return allPhrases
+	
+def good_phrases(phrases):
+	
+		
 			
-				
+    return dict([(phrase, phrases[phrase]) for phrase in phrases if phrases[phrase]=='good'])
+
+def bad_phrases(phrases):
+    return dict([(phrase, phrases[phrase]) for phrase in phrases if phrases[phrase]=='bad'])
+	
+def neutral_phrases(phrases,phraseWithCategory):
+    return dict([(phrase, 'neutral') for phrase in phrases if phrases[phrase]=='neutral'])
+			
+def TrainAndTestclassifiers():
+	#Train the classifier
+	
+	training_set=[]
+	training_set.append((good_phrases(trainphraseOpinions),'good'))
+	training_set.append((bad_phrases(trainphraseOpinions),'bad'))
+	
+		
+		
+	#training_set.append((neutral_phrases(trainphraseOpinions),'neutral'))
+	''' in order to cross-validate,i used three different training sets interchangeably in these three classifiers'''
+	testing_set=[]
+	testing_set.append((good_phrases(testphraseOpinions,testupdatedPhrases),'good'))
+	testing_set.append((bad_phrases(testphraseOpinions,testupdatedPhrases),'bad'))
+	#testing_set.append((neutral_phrases(testphraseOpinions),'neutral'))
+	#print testing_set
+	print("training classifier Original Naive Bayes")
+	classifier=nltk.NaiveBayesClassifier.train(training_set)
+	print("Training classifier Original Naive Bayes completed!")
+	print("Original Naive Bayes classifier accuracy percent:",nltk.classify.accuracy(classifier,testing_set)*100)
+	
+	#print(classifier.show_most_informative_features())
+	#print(classifier.classify(testing_set))
+	
+	
+	
+	
+	print("training classifier LinearSVC")
+	LinearSVC_Classifier=SklearnClassifier(LinearSVC())
+	LinearSVC_Classifier.train(training_set)
+	print("Training classifier SVC completed!")
+	print("Linear SVC classifier accuracy percent:",nltk.classify.accuracy(LinearSVC_Classifier,testing_set)*100)
 			
 	
 
@@ -182,21 +230,60 @@ if __name__ == '__main__':
 	featureSet=GetFeatureSet()
 	reviews=[]
 	allPhrases=[]
-	#reading reviews 
-	for line in open('./Data/NamasteMontreal.txt'):
-		line=unicode(line,'utf-8')
-		tokens=word_tokenize(line)
-		tokens=RemovePunctAndStopWords(tokens)
-		taggedTokens=nltk.pos_tag(tokens)
-		phrases=GetPhrases(taggedTokens)
-		if phrases is not None and len(phrases)>0:
-			for phrase in phrases:
-				allPhrases.append(phrase)
-	#checking if these phrases contain feature-words
-	updatedPhrases=CheckForFeatureWords(allPhrases,featureSet)
-	# finding polarity of phrases obtained
-	phraseOpinions=GetOpinions(updatedPhrases)
-	print phraseOpinions
+	#reading reviews
+	
+	#f=open('out.txt','w+')
+	# training data
+	path='./TrainData/'
+	
+	for filename in os.listdir(path):
+		print filename
+		for line in open(os.path.join(path,filename)):
+	#for line in open('./TrainData/AuPiedDeCochen.txt'):
+			line=unicode(line,'utf-8')
+			tokens=word_tokenize(line)
+			tokens=RemovePunctAndStopWords(tokens)
+			taggedTokens=nltk.pos_tag(tokens)
+			phrases=GetPhrases(taggedTokens)
+			if phrases is not None and len(phrases)>0:
+				for phrase in phrases:
+					allPhrases.append(phrase)
+		#checking if these phrases contain feature-words
+		trainupdatedPhrases=CheckForFeatureWords(allPhrases,featureSet)
+		# finding polarity of phrases obtained
+		trainphraseOpinions=GetOpinions(trainupdatedPhrases,trainphraseOpinions)
+		trainphraseOpinions.update(trainphraseOpinions)
+		
+		#for opinion in trainphraseOpinions:
+			#f.write(opinion.encode('utf-8'))
+	#f.close()
+	#test data
+	path='./TestData/'
+	for filename in os.listdir(path):
+		print filename
+		for line in open(os.path.join(path,filename)):
+	
+			line=unicode(line,'utf-8')
+			tokens=word_tokenize(line)
+			tokens=RemovePunctAndStopWords(tokens)
+			taggedTokens=nltk.pos_tag(tokens)
+			phrases=GetPhrases(taggedTokens)
+			if phrases is not None and len(phrases)>0:
+				for phrase in phrases:
+					allPhrases.append(phrase)
+		#checking if these phrases contain feature-words
+		testupdatedPhrases=CheckForFeatureWords(allPhrases,featureSet)
+		# finding polarity of phrases obtained
+		testphraseOpinions=GetOpinions(testupdatedPhrases,testphraseOpinions)
+		testphraseOpinions.update(testphraseOpinions)
+
+	
+	
+	#print selectedFeatures
+	
+	TrainAndTestclassifiers()
+	
+	
 	
 	
 		
