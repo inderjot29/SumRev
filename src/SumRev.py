@@ -36,7 +36,7 @@ def GetHyponyms(index,feature,featureSets):
 
 def GetFeatureSet():
     #following 7 words are taken into account for a feature set.
-	featureSet=['staff','service','place','food','meal','dish','menu']
+	featureSet=['staff','service','ambience','food','meal','dish','menu','cost']
 	featureSets={}
 	for feature in featureSet:
 		#extend featureset using direct hyponyms
@@ -50,9 +50,7 @@ def GetFeatureSet():
 		elif feature == 'staff':
 			GetHyponyms(0,feature,featureSets)
 			#print "staff",featureSet
-		elif feature == 'place':
-			GetHyponyms(0,feature,featureSets)
-			#print "place",featureSet
+	
 		elif feature == 'meal':
 			GetHyponyms(0,feature,featureSets)
 			#print "meal",featureSet
@@ -62,6 +60,9 @@ def GetFeatureSet():
 		elif feature == 'menu':
 			GetHyponyms(0,feature,featureSets)
 			#print "menu",featureSet
+		elif feature == 'cost':
+			GetHyponyms(0,feature,featureSets)
+			#print "cost",featureSet
 			
 	return featureSets		
 	
@@ -154,8 +155,8 @@ def GetOpinions(phrases,phraseOpinions):
 			phraseOpinions[phrase]='good'
 		elif polarity<0:
 			phraseOpinions[phrase]='bad'
-		#else:
-			#phraseOpinions[phrase]='neutral'
+		else:
+			phraseOpinions[phrase]='neutral'
 		
 	return phraseOpinions
 		
@@ -187,7 +188,7 @@ def good_phrases(phrases):
 def bad_phrases(phrases):
     return dict([(phrase, phrases[phrase]) for phrase in phrases if phrases[phrase]=='bad'])
 	
-def neutral_phrases(phrases,phraseWithCategory):
+def neutral_phrases(phrases):
     return dict([(phrase, 'neutral') for phrase in phrases if phrases[phrase]=='neutral'])
 			
 def TrainAndTestclassifiers():
@@ -199,19 +200,19 @@ def TrainAndTestclassifiers():
 	
 		
 		
-	#training_set.append((neutral_phrases(trainphraseOpinions),'neutral'))
+	training_set.append((neutral_phrases(trainphraseOpinions),'neutral'))
 	''' in order to cross-validate,i used three different training sets interchangeably in these three classifiers'''
 	testing_set=[]
-	testing_set.append((good_phrases(testphraseOpinions,testupdatedPhrases),'good'))
-	testing_set.append((bad_phrases(testphraseOpinions,testupdatedPhrases),'bad'))
-	#testing_set.append((neutral_phrases(testphraseOpinions),'neutral'))
+	testing_set.append((good_phrases(testphraseOpinions),'good'))
+	testing_set.append((bad_phrases(testphraseOpinions),'bad'))
+	testing_set.append((neutral_phrases(testphraseOpinions),'neutral'))
 	#print testing_set
 	print("training classifier Original Naive Bayes")
 	classifier=nltk.NaiveBayesClassifier.train(training_set)
 	print("Training classifier Original Naive Bayes completed!")
 	print("Original Naive Bayes classifier accuracy percent:",nltk.classify.accuracy(classifier,testing_set)*100)
 	
-	#print(classifier.show_most_informative_features())
+	print(classifier.show_most_informative_features())
 	#print(classifier.classify(testing_set))
 	
 	
@@ -233,11 +234,10 @@ if __name__ == '__main__':
 	#reading reviews
 	
 	#f=open('out.txt','w+')
-	# training data
 	path='./TrainData/'
 	
 	for filename in os.listdir(path):
-		print filename
+		print "Reading-",filename
 		for line in open(os.path.join(path,filename)):
 	#for line in open('./TrainData/AuPiedDeCochen.txt'):
 			line=unicode(line,'utf-8')
@@ -252,7 +252,7 @@ if __name__ == '__main__':
 		trainupdatedPhrases=CheckForFeatureWords(allPhrases,featureSet)
 		# finding polarity of phrases obtained
 		trainphraseOpinions=GetOpinions(trainupdatedPhrases,trainphraseOpinions)
-		trainphraseOpinions.update(trainphraseOpinions)
+		#trainphraseOpinions.update(trainphraseOpinions)
 		
 		#for opinion in trainphraseOpinions:
 			#f.write(opinion.encode('utf-8'))
@@ -260,14 +260,18 @@ if __name__ == '__main__':
 	#test data
 	path='./TestData/'
 	for filename in os.listdir(path):
-		print filename
+		print "Reading-",filename
 		for line in open(os.path.join(path,filename)):
-	
+	#for line in open('./TestData/SaintSushiBar.txt'):
 			line=unicode(line,'utf-8')
 			tokens=word_tokenize(line)
+		
 			tokens=RemovePunctAndStopWords(tokens)
+		
 			taggedTokens=nltk.pos_tag(tokens)
+		
 			phrases=GetPhrases(taggedTokens)
+		#print phrases
 			if phrases is not None and len(phrases)>0:
 				for phrase in phrases:
 					allPhrases.append(phrase)
@@ -275,13 +279,30 @@ if __name__ == '__main__':
 		testupdatedPhrases=CheckForFeatureWords(allPhrases,featureSet)
 		# finding polarity of phrases obtained
 		testphraseOpinions=GetOpinions(testupdatedPhrases,testphraseOpinions)
-		testphraseOpinions.update(testphraseOpinions)
-
+		#print testphraseOpinions
+		#testphraseOpinions.update(testphraseOpinions)
 	
 	
-	#print selectedFeatures
+		
 	
 	TrainAndTestclassifiers()
+	
+	OpinionsSet=dict(trainphraseOpinions.items()+ testphraseOpinions.items())
+	#print OpinionsSet
+	#OpinionsSet=OpinionsSet.update(testphraseOpinions)
+	#print OpinionsSet
+	fout=open('features.csv','w+')
+	fout.write('Feature\t category \t polarity \n')
+	for feature in selectedFeatures:
+		fout.write(feature.encode('utf-8'))
+		fout.write('\t')
+		fout.write(selectedFeatures[feature])
+		fout.write('\t')
+		
+		fout.write(OpinionsSet[feature])
+		fout.write('\n')
+		
+	fout.close()
 	
 	
 	
