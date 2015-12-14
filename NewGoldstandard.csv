@@ -2,7 +2,7 @@ Feature	 Category 	 Polarity
 lovely picnic basket	meal	good
 good food	food	good
 menu extremely generous	menu	good
-scrumptious lobster soup	dish	neutral
+scrumptious lobster soup	dish	good
 small piece chocolate	food	neutral
 tender-pandan custard	dish	neutral
 choice menu	menu	neutral
@@ -10,12 +10,12 @@ especially raw salmon	dish	neutral
 not_special night fish	dish	neutral
 incredible service exquisite	service	good
 instead waiting inside	meal	neutral
-soup oddly delicious	dish	neutral
+soup oddly delicious	dish	good
 things chocolate	food	neutral
 well meal	meal	good
 disappointing choice crescent	dish	bad
 fantastic food good	food	good
-dish sort wizardry	dish	neutral
+dish sort wizardry	dish	good
 not_sorry food omg	food	good
 point helpful	dish	good
 dripdinner really good	meal	good
@@ -35,7 +35,7 @@ menu watermelon	menu	neutral
 sandwich always meaty	food	neutral
 service amazing	service	good
 experiencing food	food	neutral
-flaky buttery warm	food	neutral
+flaky buttery warm	food	bad
 several pricey	cost	bad
 well worth price	cost	good
 service slow	service	bad
@@ -55,7 +55,7 @@ not_food coming table	food	neutral
 chili-blackberry soda whole	dish	neutral
 hard teaser lobster	meal	bad
 melting cheese	food	neutral
-really special restaurant	dish	neutral
+really special restaurant	dish	good
 price especially french	dish	neutral
 staff incredible	staff	good
 dinner quite good	meal	good
@@ -72,7 +72,7 @@ limited menu	menu	bad
 not_basically dish	dish	neutral
 mess -handwritten	meal	bad
 not_food delicious	food	bad
-wide choice food	food	neutral
+wide choice food	food	good
 salads taboulli much	dish	neutral
 tacos pretty good	dish	good
 strawberries chocolate	food	neutral
@@ -94,20 +94,20 @@ favorite sushi place	dish	good
 not_perfectly steak lobster	meal	bad
 cheese entire life	food	neutral
 good service	service	good
-special menu	dish	neutral
+special menu	dish	good
 tray bite-sized	meal	neutral
 lunch late	meal	neutral
 not_butter absolutely excellent	food	bad
-full responsibility meal	meal	neutral
-worlds tastiest 'cheese	food	neutral
-tasty specially	dish	neutral
+full responsibility meal	meal	good
+worlds tastiest 'cheese	food	good
+tasty specially	dish	good
 moment eating dish	dish	neutral
 chatty meal	meal	neutral
 happen food	food	neutral
-careful service family	service	neutral
+careful service family	service	good
 great meal	meal	good
 optimal meal	meal	good
-service atypical	service	neutral
+service atypical	service	good
 not_halibut dish	dish	neutral
 steady stream eat-in	meal	good
 hot cheese	food	good
@@ -115,7 +115,7 @@ service wise	service	good
 food exceptional	food	good
 safe dinner-	meal	good
 brunch last	meal	neutral
-truly homemade food	food	neutral
+truly homemade food	food	good
 not_bad service	service	good
 sausages butter	food	neutral
 terms menu	cost	neutral
@@ -128,7 +128,7 @@ steak 've	meal	neutral
 pretty affordable price	cost	good
 chocolate tart	food	neutral
 adorable menu	menu	good
-food extensive	food	neutral
+food extensive	food	good
 not_away cheese whiz	food	neutral
 delicious brunch	meal	good
 breakfast tea	meal	neutral
@@ -150,8 +150,8 @@ dishes taking	dish	neutral
 not_service impeccable	service	bad
 much food	food	neutral
 not_dishes chocolate light	dish	neutral
-not_food really heavy	food	neutral
-special dinner	meal	neutral
+not_food really heavy	food	good
+special dinner	meal	good
 not_service remarkable	service	bad
 delicious meal	meal	good
 food really fresh	food	good
@@ -162,7 +162,7 @@ mid-priced dining table	cost	neutral
 amazing food	food	good
 dish impressive	dish	good
 cheese pastry thing	food	neutral
-professional service food	food	neutral
+professional service food	food	good
 convenient importantly- food	food	good
 common service	service	neutral
 steak mushroom steak	meal	neutral
@@ -174,7 +174,7 @@ avoid disappointment	dish	bad
 excuisitely delicious food	food	good
 hard cheese mild	food	bad
 exceptional food good	food	good
-dishes average	dish	neutral
+dishes average	dish	bad
 not_good meat	food	bad
 fresh pasta venison	dish	good
 food reasonable	food	good
@@ -183,18 +183,18 @@ rice pudding	dish	neutral
 menu well	menu	good
 plus brunch	meal	neutral
 street picnic	meal	neutral
-ginormous service	service	neutral
+ginormous service	service	good
 delicious relaxing meal	meal	good
 sooo much food	food	neutral
 trying coconut	food	neutral
 top head dinner	meal	good
-ridiculously delicious service	service	neutral
+ridiculously delicious service	service	good
 menu really interesting	menu	good
 pushing food	food	neutral
 menu full	menu	neutral
 truffle-cheese popcorn think	food	neutral
 delicious food looking	food	good
-thanks staff	staff	neutral
+thanks staff	staff	good
 impeccable waitstaff	staff	good
 not_food n't great	food	bad
 go food	food	neutral
@@ -223,27 +223,27 @@ vegetable meat	food	neutral
 continue making dish	dish	neutral
 bread service	service	neutral
 not_delicious staff	staff	bad
-flavorful dish	dish	neutral
+flavorful dish	dish	good
 not_back brunch	meal	neutral
 doodles menu	menu	neutral
-high price think	cost	neutral
+high price think	cost	bad
 staff helpful	staff	good
 first bite amazing	meal	good
 service pretty good	service	good
-tasty service	service	neutral
+tasty service	service	good
 staff humble	staff	good
 exceptional service	service	good
 not_fishing club	food	neutral
 tasting menus	menu	neutral
 not_necessary point	dish	neutral
-not_ordering food	food	neutral
+not_ordering food	food	bad
 nicely pungent cheese	food	good
 desserts dense chocolate	food	bad
 'yogurt drink	food	neutral
 girolles mushroomscheese	food	neutral
 well cheese	food	good
 dish guineafowl dish	dish	neutral
-food definitely average	food	neutral
+food definitely average	food	bad
 profiles dish exceptional	dish	good
 choice bring special	dish	neutral
 service responsive	service	good
@@ -263,11 +263,11 @@ old school steak	meal	neutral
 not_indian food thali	food	neutral
 positive every staff	staff	good
 make payment	cost	neutral
-overly oily meat	food	neutral
+overly oily meat	food	bad
 not_brunch novelty	meal	bad
 bite eat	meal	neutral
 fish drew	food	neutral
-definitely tasting menu	menu	neutral
+definitely tasting menu	menu	good
 much steak onions	meal	neutral
 good point trip	dish	good
 food rather eating	food	neutral
@@ -332,13 +332,13 @@ current menu	menu	neutral
 extremely reasonable price	cost	good
 parsnips special	dish	neutral
 satisfying dinner	meal	good
-really tasty service	service	neutral
+really tasty service	service	good
 interesting menu	menu	good
 knowledgeable service	service	good
 translate french-language menu	menu	neutral
 exquisite meal	meal	good
 lentil-studded rice moussaka	dish	neutral
-not_picnic basket option	meal	neutral
+not_picnic basket option	meal	bad
 good snack food	meal	good
 staff really nice	staff	good
 staff wonderful	staff	good
@@ -346,9 +346,9 @@ small snack	meal	neutral
 thin fish/ person	food	neutral
 instead reheating sauce	meal	neutral
 booth tearing animal	meal	neutral
-not_quick lunch bouston	meal	neutral
+not_quick lunch bouston	meal	bad
 lacking price	cost	bad
-special treat	dish	neutral
+special treat	dish	good
 good meal warm	meal	good
 service delicious	service	good
 counts swear monkfish	food	neutral
@@ -371,13 +371,13 @@ not_service 'd	service	neutral
 including cheese	food	neutral
 many staff working	staff	neutral
 special message	meal	neutral
-special gravy sauce	dish	neutral
+special gravy sauce	dish	good
 salad unforgettable	dish	good
-substantial tasting menu	menu	neutral
+substantial tasting menu	menu	good
 special never	dish	neutral
 not_over-priced tourist trap	cost	good
 great lunch	meal	good
-meat literally flavourful	food	neutral
+meat literally flavourful	food	good
 dishes wine well	dish	good
 amazingly flavorful dish	dish	good
 steak/cheese vegetarian	meal	neutral
@@ -388,7 +388,7 @@ outstanding meal	meal	good
 fantastic mention food	food	good
 fish dish salty	dish	neutral
 not_breakfast place	meal	neutral
-steal definitely good	meal	neutral
+steal definitely good	meal	good
 dish new	dish	neutral
 impressive looking dish	dish	good
 not_menu already small	menu	neutral
@@ -397,7 +397,7 @@ great point sweet	dish	good
 items menu	menu	neutral
 point food	dish	neutral
 pudding bourbon	dish	neutral
-satiating dinner	meal	neutral
+satiating dinner	meal	good
 salmon well cheese	food	good
 ordering yogurt	food	neutral
 not_staff generally decent	staff	bad
@@ -416,7 +416,7 @@ options menu	menu	neutral
 dish touch fusion	dish	neutral
 not_slices sashimi right	dish	bad
 especially mechant carotte	dish	neutral
-food well-presented	food	neutral
+food well-presented	food	good
 'cheese cigar	food	neutral
 cake especially memorable	dish	good
 food bad	food	bad
@@ -456,16 +456,16 @@ highlights meal	meal	neutral
 not_first bite	meal	neutral
 not_service surprisingly poor	service	good
 pieces fish	food	neutral
-high price point	dish	neutral
+high price point	dish	bad
 moist carrot cake	dish	neutral
-food quite flavourful	food	neutral
+food quite flavourful	food	good
 steam dramatic	meal	neutral
 not_stay away cheese	food	neutral
 not_potatoes cheese	food	neutral
 not_end meal	meal	neutral
 curry laksa chicken	dish	neutral
 first course risotto	dish	neutral
-service professional	service	neutral
+service professional	service	good
 not_familiar korean food	food	neutral
 last supper	meal	neutral
 not_think soup	dish	neutral
@@ -481,17 +481,17 @@ impeccable service	service	good
 price-tag pretty	cost	good
 not_staff attentive	staff	bad
 croquettes really good	dish	good
-rather tasting menu	menu	neutral
-special effect	dish	neutral
+rather tasting menu	menu	good
+special effect	dish	good
 friends pasta	dish	neutral
 terms authentic	cost	good
 different chocolate	food	neutral
 organic peanut butter	food	neutral
-favourite dish night	dish	neutral
+favourite dish night	dish	good
 foods go well	food	good
 possible serving food	food	neutral
 not_enjoying dinner	meal	bad
-service overattentive always	service	neutral
+service overattentive always	service	good
 menu bring little	menu	neutral
 picky meat	food	bad
 not_prices europea	cost	neutral
@@ -500,8 +500,8 @@ not_average caesar salad	dish	neutral
 great atmosphere staff	staff	good
 really pricey brunch	meal	bad
 staff extremely attractive	staff	good
-qualms service pretty	service	neutral
-special nye tasting	dish	neutral
+qualms service pretty	service	good
+special nye tasting	dish	good
 not_garlic butter	food	neutral
 small tasting menu	menu	neutral
 menus 'd	menu	neutral
@@ -533,12 +533,12 @@ favorite dish	dish	good
 single bite	meal	neutral
 wonderful staff	staff	good
 not_meal memorable	meal	bad
-service eclectic	service	neutral
+service eclectic	service	good
 not_usual food	food	neutral
 ever steak	meal	neutral
 special occasion	dish	neutral
 early dinner	meal	neutral
-dishes beginning extensive	dish	neutral
+dishes beginning extensive	dish	good
 fries sauce salad	dish	neutral
 menu satisfying	menu	good
 costing arm	cost	neutral
@@ -564,7 +564,7 @@ great meal le	meal	good
 menus maybe invite	menu	neutral
 satisfying breakfast	meal	good
 late bite	meal	neutral
-special poutine	dish	neutral
+special poutine	dish	good
 separate menu	menu	neutral
 especially memorable	dish	good
 something special	dish	neutral
@@ -579,7 +579,7 @@ meats super	food	good
 not_dishes solid	dish	bad
 not_good comfort food	food	bad
 even special	dish	neutral
-special restaurant	dish	neutral
+special restaurant	dish	good
 food absolutely crappy	food	bad
 pasta much	dish	neutral
 eggs hash	dish	neutral
@@ -601,9 +601,9 @@ service overall	service	neutral
 people steak	meal	neutral
 eating mess	meal	bad
 good korean food	food	good
-specials ahi	dish	neutral
+specials ahi	dish	good
 helpful staff	staff	good
-periodically re-invent menu	menu	neutral
+periodically re-invent menu	menu	good
 memories brunch	meal	neutral
 not_service great	service	bad
 service wonderful	service	good
@@ -611,17 +611,17 @@ small restaurant food	food	neutral
 third meal montreal	meal	neutral
 staff gracious	staff	good
 food attentive	food	good
-feel special	dish	neutral
+feel special	dish	good
 reasonable amount food	food	good
 full service breakdown	service	bad
-pricey well	cost	neutral
+pricey well	cost	good
 particular dish	dish	neutral
 instead toque	meal	neutral
 special try wont	dish	neutral
 general experience point	dish	neutral
 food amazing	food	good
 go brunch de	meal	neutral
-actually providing service	service	neutral
+actually providing service	service	good
 especially thin	dish	neutral
 indian food	food	neutral
 not_sure menu	menu	neutral
@@ -631,7 +631,7 @@ overall meal	meal	neutral
 patty believe	dish	neutral
 great service timing	service	good
 great tasting menu	menu	good
-professional service	service	neutral
+professional service	service	good
 tasting menu	menu	neutral
 friendly knowledgeable service	service	good
 not_much cheese	food	neutral
@@ -639,11 +639,11 @@ dishes lamb curry	dish	neutral
 helpful service tip	service	good
 not_definitely enjoy meal	meal	bad
 beautiful service	service	good
-prices expect high-end	cost	neutral
+prices expect high-end	cost	bad
 highlight meal	meal	neutral
 mac-n-cheese -because	food	neutral
-full tasting menu	menu	neutral
-meat still tasty	food	neutral
+full tasting menu	menu	good
+meat still tasty	food	good
 large portion menu	menu	neutral
 not_meaty delicious	food	bad
 especially hard teaser	meal	bad
@@ -652,7 +652,7 @@ service respectful	service	good
 not_food drinking	food	neutral
 good lebanese food	food	good
 unconventional sushi stop	dish	neutral
-great meal crazy	meal	neutral
+great meal crazy	meal	good
 not_delicious sushi	dish	bad
 not_bad price	cost	good
 driving dinner	meal	neutral
@@ -660,13 +660,13 @@ service always excellent	service	good
 not_wonderful cheese stick	food	bad
 not_jello pudding	dish	neutral
 things menu	menu	neutral
-luckly lunch rush	meal	neutral
-unique fish dish	dish	neutral
+luckly lunch rush	meal	good
+unique fish dish	dish	good
 nice especially	dish	good
 fantastic brunch	meal	good
 dinner significant	meal	good
-service interactive	service	neutral
-good food cheap	food	neutral
+service interactive	service	good
+good food cheap	food	good
 overall menu	menu	neutral
 bread pudding	dish	neutral
 blueberries dish pretty	dish	good
@@ -688,8 +688,8 @@ hubs bison steak	meal	neutral
 fish day foie	food	neutral
 basically good food	food	good
 not_super special	dish	bad
-price justifiable	cost	neutral
-not_special chicken	dish	neutral
+price justifiable	cost	good
+not_special chicken	dish	bad
 instead essential element	meal	neutral
 not_good dinner	meal	bad
 dish amazing	dish	good
@@ -707,13 +707,13 @@ re-invent menu	menu	neutral
 take food	food	neutral
 different staff	staff	neutral
 clean food	food	good
-staffs extremely earth	staff	neutral
+staffs extremely earth	staff	good
 nice meal beginning	meal	good
 not_options menu never	menu	neutral
 not_bad food	food	good
 not_comparable food	food	neutral
 food delectable	food	good
-constantly changing menu	menu	neutral
+constantly changing menu	menu	good
 not_high enjoy food	food	bad
 not_breast dessert chocolate	food	neutral
 not_really good dish	dish	bad
@@ -813,18 +813,18 @@ not_sushi 're	dish	neutral
 delicious food awesome	food	good
 service great	service	good
 careful food	food	neutral
-service make sure	service	neutral
-huge handful salad	dish	neutral
+service make sure	service	good
+huge handful salad	dish	good
 dishes korean	dish	neutral
 mains fish	food	neutral
 not_quite disappointed wondering	dish	good
-craving tea	meal	neutral
-food passable	food	neutral
+craving tea	meal	good
+food passable	food	good
 crab special	dish	neutral
 foods sweet	food	good
 meals recent	meal	neutral
 not_way much cheese	food	neutral
-special restaurant montreal	dish	neutral
+special restaurant montreal	dish	good
 gluten-free pancake	dish	neutral
 dreaming meal	meal	neutral
 good food comforting	food	good
@@ -835,7 +835,7 @@ not_soon good dinner	meal	bad
 not_really perfect meal	meal	bad
 attentive service	service	good
 instead cheese gravy	meal	neutral
-special dining destination	dish	neutral
+special dining destination	dish	good
 not_probably enough breakfast	meal	bad
 good dish	dish	good
 expensive price pay	cost	bad
@@ -860,7 +860,7 @@ name serving picnic	meal	neutral
 not_food absolutely delicious	food	bad
 meals foodie honeymoon	meal	neutral
 prior showing dinner	meal	neutral
-interaction instead reading	meal	neutral
+interaction instead reading	meal	good
 really recommend breakfast	meal	good
 cheese plate	food	neutral
 not_cheese pesto spread	meal	neutral
@@ -872,10 +872,10 @@ not_friends brunch	meal	neutral
 food impeccable	food	good
 going service	service	neutral
 not_present food	food	neutral
-not_caring staff	staff	neutral
+not_caring staff	staff	bad
 santé much food-	food	neutral
 especially cold	dish	bad
-basic service courtesy	service	neutral
+basic service courtesy	service	good
 brothers menu	menu	neutral
 not_'ll try spoil	dish	good
 menu creative	menu	good
@@ -896,7 +896,7 @@ specialty fantastic	dish	good
 fresh quality fish	food	good
 great service staff	staff	good
 not_food quite compare	food	neutral
-food ridiculously delicious	food	neutral
+food ridiculously delicious	food	good
 friends- special	dish	neutral
 famous seafood pancake	dish	good
 not_wonderful service	service	bad
@@ -905,20 +905,20 @@ not_secret/hidden menu	menu	neutral
 not_entrée plenty food	food	neutral
 single dish	dish	neutral
 service impeccable	service	good
-not_staff knowledgable	staff	neutral
+not_staff knowledgable	staff	bad
 costly guilty pleasure	cost	bad
 dishes good	dish	good
 not_even special	dish	neutral
 not_generous service	service	bad
-jealous amazing food	food	neutral
+jealous amazing food	food	good
 breast dessert chocolate	food	neutral
 not_food really good	food	bad
 not_terms value sad	cost	good
 dish many	dish	neutral
 bison special	dish	neutral
-not_tasting menu	menu	neutral
+not_tasting menu	menu	bad
 especially restaurant	dish	neutral
-special day oyster	dish	neutral
+special day oyster	dish	good
 staff lovely thing	staff	good
 special night	dish	neutral
 chunks cheese	food	neutral
@@ -943,9 +943,9 @@ atmosphere good food	food	good
 chocolate cake plain	dish	neutral
 typical syrup butter	food	neutral
 cheeselollipops popcorn	food	neutral
-not_food well-presented	food	neutral
+not_food well-presented	food	bad
 picky sushi	dish	bad
-service okay	service	neutral
+service okay	service	good
 terribly disappointing friday	dish	bad
 good food service	food	good
 not_fries cheese	food	neutral
@@ -979,24 +979,24 @@ much food-	food	neutral
 showing dinner	meal	neutral
 icons sushi	dish	neutral
 great meal haha	meal	good
-different butter assortment	food	neutral
+different butter assortment	food	good
 memorable food experience	food	good
-experts menu	menu	neutral
+experts menu	menu	good
 meat/veggies inside inside	food	neutral
 dinner instead good	meal	good
-not_service huge	service	neutral
+not_service huge	service	bad
 recommend breakfast anyone	meal	good
 indian food stay	food	neutral
 plate costing	cost	neutral
 cheese right size	food	good
 ﻿service outstanding	service	good
-dishes tastefull	dish	neutral
+dishes tastefull	dish	good
 sweetbreads risotto tartare	dish	neutral
 simply amazing staff	staff	good
 rock/chocolate hazelnut sucker	food	bad
 implies dish	dish	neutral
-somwthing special	dish	neutral
-not_actual thought-out dish	dish	neutral
+somwthing special	dish	good
+not_actual thought-out dish	dish	bad
 absolutely crappy service	service	bad
 service terrible	service	bad
 've order food	food	neutral
@@ -1007,12 +1007,12 @@ not_old school meal	meal	neutral
 finishing meal	meal	neutral
 food outstanding	food	good
 service explaining	service	neutral
-oily meat	food	neutral
+oily meat	food	bad
 not_looking menu	menu	neutral
-not_terms taste/flavor	cost	neutral
+not_terms taste/flavor	cost	bad
 first tostada	dish	neutral
 cheese weird	food	bad
-the-best-place montreal breakfast	meal	neutral
+the-best-place montreal breakfast	meal	good
 price-tag bit fast	cost	good
 favorite sushi	dish	good
 special occasion dad	dish	neutral
@@ -1022,7 +1022,7 @@ price make sure	cost	neutral
 dish smoke waiter	dish	bad
 changing menu	menu	neutral
 not_steak lobster	meal	neutral
-cryptic menu chalk	menu	neutral
+cryptic menu chalk	menu	bad
 sushi menu	dish	neutral
 food draining	food	bad
 not_food definitely appreciate	food	bad
@@ -1054,21 +1054,21 @@ not_menu simply enjoy	menu	bad
 cheese spinach ricotta	food	neutral
 not_special occasion	dish	neutral
 pop rock/chocolate	food	neutral
-quickly luckly lunch	meal	neutral
+quickly luckly lunch	meal	good
 terms 'wow	cost	neutral
 special meal celebrate	meal	good
-food looking forward	food	neutral
+food looking forward	food	good
 dish tostada case	dish	neutral
 favorite meal	meal	good
 not_menu immensely difficult	menu	good
 dish caramelle pasta	dish	neutral
 not_white fish butter	food	neutral
 dish absolutely incredible	dish	good
-high-end service go	service	neutral
-friends grabbing bite	meal	neutral
+high-end service go	service	good
+friends grabbing bite	meal	good
 point easy	dish	good
 terms taste	cost	neutral
-much flavour dish	dish	neutral
+much flavour dish	dish	good
 nice hearty snack	meal	good
 especially restaurant manager	dish	neutral
 bites meal	meal	neutral
@@ -1086,24 +1086,24 @@ noodles chili paste	dish	neutral
 fresh food great	food	good
 real cheese	food	neutral
 meat 've	food	neutral
-special appetizer	dish	neutral
+special appetizer	dish	good
 extremely pricey	cost	bad
 not_bad meat strip	food	good
 different texture meat	food	neutral
 not_asian food	food	neutral
 food atmosphere worth	food	good
-not_dreaming meal	meal	neutral
+not_dreaming meal	meal	bad
 overall food	food	neutral
 final main dish	dish	neutral
 little disappointing	dish	bad
-staff welcoming	staff	neutral
-dishes quite tasty	dish	neutral
+staff welcoming	staff	good
+dishes quite tasty	dish	good
 never disappointing choice	dish	bad
 well fish	food	good
 food fresh	food	good
 not_authentic food staff	staff	bad
 vegetable biryani naan	dish	neutral
-not_ricotta special	dish	neutral
+not_ricotta special	dish	bad
 oysters fish	food	neutral
 disappointing friday dinner	meal	bad
 amazing chocolate	food	good
@@ -1112,13 +1112,13 @@ unforgettable meal	meal	good
 not_food authentic	food	bad
 wide variety food	food	good
 little salad	dish	neutral
-seat instead cranking	meal	neutral
+seat instead cranking	meal	bad
 first meal true	meal	neutral
 outstanding dinner experience	meal	good
 not_hunting fishing	food	neutral
 not_eating salad	dish	neutral
 cheese extraction	food	neutral
-dishes averaging	dish	neutral
+dishes averaging	dish	bad
 great value price	cost	good
 hot melting cheese	food	good
 become costly guilty	cost	bad
@@ -1131,7 +1131,7 @@ not_vegetable recall point	dish	neutral
 daily fish	food	neutral
 service outstanding	service	good
 single dish classy	dish	good
-first class service	service	neutral
+first class service	service	good
 not_sushi dining good	dish	bad
 tears dining	meal	neutral
 not_cheese bottom	food	neutral
@@ -1161,12 +1161,12 @@ wonderful family dinner	meal	good
 staff moving	staff	neutral
 custard top	dish	good
 overall service	service	neutral
-service high	service	neutral
+service high	service	good
 omelets make	dish	neutral
-tongue first dish	dish	neutral
+tongue first dish	dish	good
 pretty amazing meal	meal	good
 not_definitely worth price	cost	bad
-special flavor	dish	neutral
+special flavor	dish	good
 point go	dish	neutral
 beet salad	dish	neutral
 lovely dish tostada	dish	good
@@ -1198,15 +1198,15 @@ food beautiful	food	good
 dog mac-n-cheese	food	neutral
 salad hanging	dish	neutral
 not_salad kick	dish	neutral
-decorative menu	menu	neutral
+decorative menu	menu	good
 japanese food 'm	food	neutral
 dish foot-long	dish	neutral
 meal surprisingly affordable	meal	good
 crappy service	service	bad
 instead real cheese	meal	neutral
 previous post price	cost	neutral
-waitstaff friendly funny	staff	neutral
-really special	dish	neutral
+waitstaff friendly funny	staff	good
+really special	dish	good
 service friendly accommodating	service	good
 instead smokey nose	meal	neutral
 césar saladsurf turf	dish	neutral
@@ -1254,7 +1254,7 @@ interactive food	food	neutral
 meal awesome	meal	good
 payment unnecessarily slow	cost	bad
 delicious food	food	good
-high quality food	food	neutral
+high quality food	food	good
 -because obviously mac-n-cheese-	food	neutral
 not_main dish	dish	neutral
 meal exceptional	meal	good
@@ -1288,7 +1288,7 @@ excellent pot cheesecake	dish	good
 salad much seasoning	dish	neutral
 not_lebanese food	food	neutral
 salmon sashimi apple	dish	neutral
-not_deliciously soupy	dish	neutral
+not_deliciously soupy	dish	bad
 menus available	menu	good
 indian dinner home	meal	neutral
 chocolate lollipop	food	neutral
@@ -1305,14 +1305,14 @@ service top	service	good
 not_soup n't boiling	dish	good
 worth try lunch-snack	meal	good
 price reasonable	cost	good
-food craving	food	neutral
+food craving	food	good
 make special	dish	neutral
 back tear	meal	neutral
 home-cooking korean food	food	neutral
 relatively authentic soup	dish	good
 not_especially several	dish	neutral
 good food nice	food	good
-not_already flavorful seafood	food	neutral
+not_already flavorful seafood	food	bad
 end meal	meal	neutral
 upscale french dinner	meal	good
 custard much sweet	dish	good
@@ -1320,12 +1320,12 @@ meat delicious	food	good
 special job budget	dish	neutral
 food enjoyable	food	good
 mess 're	meal	bad
-coffee really special	dish	neutral
+coffee really special	dish	good
 goat cheese salad	dish	neutral
 menu well great	menu	good
 kimchi food	food	neutral
 sushi strongly recommend	dish	good
 not_menu finally decent	menu	bad
 gelatinous custard	dish	neutral
-several savory brunch	meal	neutral
+several savory brunch	meal	good
 courteous service	service	good

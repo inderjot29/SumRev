@@ -12,11 +12,12 @@ from itertools import chain
 from nltk.tokenize import sent_tokenize, word_tokenize
 import sys
 import os
+
 import nltk
+from nltk.classify import MaxentClassifier
 from nltk.classify.scikitlearn import SklearnClassifier
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC,LinearSVC
+import csv
 
 # global variables
 trainphraseOpinions={}
@@ -37,7 +38,7 @@ def GetHyponyms(index,feature,featureSets):
 	
 #expanding featureset using Wordnet
 def GetFeatureSet():
-#following 7 words are taken into account for a feature set.
+    #following 7 words are taken into account for a feature set.
 	featureSet=['staff','service','ambience','food','meal','dish','menu','cost']
 	featureSets={}
 	for feature in featureSet:
@@ -71,8 +72,9 @@ def RemovePunctAndStopWords(tokens):
 	filtered = [w for w in tokens if nonPunct.match(w)]
 	#Remove the stopwords from filtered text
 	filtered_words = [word for word in filtered if word.lower() not in stoplist]
-	frequent_words=['the','and','of','this']
+	frequent_words=['the','and','of','this','am','etc','also','are','were','was','is']
 	filtered_words = [word for word in filtered_words if word.lower() not in frequent_words]
+	filtered_words=[word.lower() for word in filtered_words]
 	return filtered_words
 
 #returns phrases/aspects which meet the set patterns	
@@ -80,10 +82,13 @@ def GetPhrases(taggedTokens):
 	phrases=[]
 	i=0
 	for i in range(0,len(taggedTokens)):
-		#phrases starting with adjective- check for (adjective noun) or (adjective noun noun)
+		'''phrases starting with adjective- check for 
+		(adjective noun),
+		(adjective noun noun),
+		(adjective noun verb)'''
 		if taggedTokens[i][1]=='JJ':
 			if i< len(taggedTokens)-1 and taggedTokens[i+1][1]=='NN':
-				if i< len(taggedTokens)-2 and taggedTokens[i+2][1]=='NN':
+				if i< len(taggedTokens)-2 and (taggedTokens[i+2][1]=='NN' or taggedTokens[i+2][1]=='VBG' or taggedTokens[i+2][1]=='VBP'):
 					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]+' '+taggedTokens[i+2][0]
 					if phrase is not None and len(phrase)>0:
 						phrases.append(phrase)
@@ -92,8 +97,10 @@ def GetPhrases(taggedTokens):
 					if phrase is not None and len(phrase)>0:
 						phrases.append(phrase)
 		
-		#phrases starting with verb- check for (verb noun) or (verb adverb)
-		elif taggedTokens[i][1]=='VBP':
+			'''phrases starting with verb- check for 
+			(verb noun)
+			(verb adverb)'''
+		elif taggedTokens[i][1]=='VBP' or taggedTokens[i][1]=='VBG':
 			if  i< len(taggedTokens)-1 and taggedTokens[i+1][1]=='NN':
 				phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]
 				if phrase is not None and len(phrase)>0:
@@ -102,11 +109,21 @@ def GetPhrases(taggedTokens):
 				phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]
 				if phrase is not None and len(phrase)>0:
 					phrases.append(phrase)
-		#phrases starting with adverb- check for (adverb verb) or (adverb adverb adjective) or(adverb adjective noun) or (adverb adjective)
+			'''phrases starting with adverb- check for 
+			(adverb verb),
+			(adverb verb noun),
+			(adverb adverb adjective),
+			(adverb adjective noun),
+			(adverb adjective)'''
 		elif taggedTokens[i][1]=='RB':
-			if i< len(taggedTokens)-1 and taggedTokens[i+1][1]=='VBP':
-				phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]
-				if phrase is not None and len(phrase)>0:
+			if i< len(taggedTokens)-1 and (taggedTokens[i+1][1]=='VBP' or taggedTokens[i+1][1]=='VBG') :
+				if i< len(taggedTokens)-2 and (taggedTokens[i+2][1]=='NN' or taggedTokens[i+2][1]=='NNS') :
+					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]+' '+taggedTokens[i+2][0]
+					if phrase is not None and len(phrase)>0:
+						phrases.append(phrase)
+				else:
+					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]
+					if phrase is not None and len(phrase)>0:
 						phrases.append(phrase)
 			elif i< len(taggedTokens)-1 and taggedTokens[i+1][1]=='RB':
 				if i< len(taggedTokens)-2 and taggedTokens[i+2][1]=='JJ':
@@ -122,6 +139,43 @@ def GetPhrases(taggedTokens):
 					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]
 					if phrase is not None and len(phrase)>0:
 						phrases.append(phrase)
+						
+			'''phrases starting with noun- 
+			check for 
+			(noun verb),
+			(noun verb adjective),
+			(noun verb adverb),
+			(noun adverb adjective),
+			(noun adverb verb),
+			(noun adjective)'''
+		elif taggedTokens[i][1]=='NN' or taggedTokens[i][1]=='NNS':
+			if i< len(taggedTokens)-1 and (taggedTokens[i+1][1]=='VBP' or taggedTokens[i+1][1]=='VBG') :
+				if i< len(taggedTokens)-2 and taggedTokens[i+2][1]=='JJ':
+					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]+' '+taggedTokens[i+2][0]
+					if phrase is not None and len(phrase)>0:
+						phrases.append(phrase)
+				elif i< len(taggedTokens)-2 and taggedTokens[i+2][1]=='RB':
+					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]+' '+taggedTokens[i+2][0]	
+					if phrase is not None and len(phrase)>0:
+						phrases.append(phrase)
+				else:
+					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]
+					if phrase is not None and len(phrase)>0:
+						phrases.append(phrase)
+			elif i< len(taggedTokens)-1 and taggedTokens[i+1][1]=='RB':
+				if i< len(taggedTokens)-2 and taggedTokens[i+2][1]=='JJ':
+					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]+' '+taggedTokens[i+2][0]
+					if phrase is not None and len(phrase)>0:
+						phrases.append(phrase)
+				elif i< len(taggedTokens)-2 and (taggedTokens[i+2][1]=='VBG' or taggedTokens[i+2][1]=='VBP') :
+					phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]+' '+taggedTokens[i+2][0]
+					if phrase is not None and len(phrase)>0:
+						phrases.append(phrase)
+				
+			elif i< len(taggedTokens)-1 and taggedTokens[i+1][1]=='JJ':
+				phrase=taggedTokens[i][0]+' '+taggedTokens[i+1][0]
+				if phrase is not None and len(phrase)>0:
+					phrases.append(phrase)
 	return phrases
 	
 #returns dictionary of phrases along with the opinions based on lexical corpus used
@@ -141,6 +195,7 @@ def GetOpinions(phrases,phraseOpinions):
 	for phrase in phrases:
 		polarity=0
 		words=phrase.split(' ')
+		 
 		for word in words:
 			if 'not_' in word:
 				word=word.split('not_')[1]
@@ -178,29 +233,26 @@ def CheckForFeatureWords(allPhrases,featureSet):
 			flag=0
 	return allPhrases
 	
-#categorizing good,bad and neutral phrases to use data for classifiers	
-def good_phrases(phrases):
-	return dict([(phrase, phrases[phrase]) for phrase in phrases if phrases[phrase]=='good'])
 
-def bad_phrases(phrases):
-	return dict([(phrase, phrases[phrase]) for phrase in phrases if phrases[phrase]=='bad'])
+def word_features(phrase):
+	words={}
+	for word in phrase.split():
+		words[word]=True
+	return words
 	
-def neutral_phrases(phrases):
-	return dict([(phrase, 'neutral') for phrase in phrases if phrases[phrase]=='neutral'])
-			
-# evaluating results using classifiers
-def EvaluateUsingClassifiers():
-	#Train the classifier
+def GetFeatureSetForClassifiers(OpinionsSet):
+	feature_set=[]
+	for phrase in OpinionsSet:
+		if OpinionsSet[phrase]=='good':
+			feature_set.append((word_features(phrase),'good'))
+		elif OpinionsSet[phrase]=='bad':
+			feature_set.append((word_features(phrase),'bad'))
+		elif OpinionsSet[phrase]=='neutral':
+			feature_set.append((word_features(phrase),'neutral'))
+	return feature_set
 	
-	training_set=[]
-	training_set.append((good_phrases(trainphraseOpinions),'good'))
-	training_set.append((bad_phrases(trainphraseOpinions),'bad'))
-	training_set.append((neutral_phrases(trainphraseOpinions),'neutral'))
-	''' in order to cross-validate,i used three different training sets interchangeably in these three classifiers'''
-	testing_set=[]
-	testing_set.append((good_phrases(testphraseOpinions),'good'))
-	testing_set.append((bad_phrases(testphraseOpinions),'bad'))
-	testing_set.append((neutral_phrases(testphraseOpinions),'neutral'))
+	
+def CallingClassifiers(training_set,testing_set):
 	#print testing_set
 	print("training classifier Original Naive Bayes")
 	classifier=nltk.NaiveBayesClassifier.train(training_set)
@@ -208,13 +260,52 @@ def EvaluateUsingClassifiers():
 	print("Original Naive Bayes classifier accuracy percent:",nltk.classify.accuracy(classifier,testing_set)*100)
 	
 	print(classifier.show_most_informative_features())
-	#print(classifier.classify(testing_set))
+	#print(classifier.classify_many(testing_set))
 	
 	print("training classifier LinearSVC")
 	LinearSVC_Classifier=SklearnClassifier(LinearSVC())
 	LinearSVC_Classifier.train(training_set)
 	print("Training classifier SVC completed!")
 	print("Linear SVC classifier accuracy percent:",nltk.classify.accuracy(LinearSVC_Classifier,testing_set)*100)
+	
+	print("training classifier MaxEnt")
+	algorithm = nltk.classify.MaxentClassifier.ALGORITHMS[0]
+	MaxEntclassifier = nltk.MaxentClassifier.train(training_set, algorithm,max_iter=3)
+	print("Training classifier MaxEnt completed!")
+	MaxEntclassifier.show_most_informative_features(10)
+	print("Linear MaxEnt classifier accuracy percent:",nltk.classify.accuracy(MaxEntclassifier,testing_set)*100)
+
+# evaluating results using classifiers
+def EvaluateUsingClassifiers(OpinionsSet):
+	#obtaining feature_set
+	feature_set=GetFeatureSetForClassifiers(OpinionsSet)
+	
+	fLength=len(feature_set)
+	
+	print "Classification results when train-N =300,test-N= 300 "
+	training_set=feature_set[0:300]
+	testing_set=feature_set[301:600]
+	CallingClassifiers(training_set,testing_set)
+	
+	print "Classification results when train-N =600,test-N= 300"
+	training_set=feature_set[0:600]
+	testing_set=feature_set[601:900]
+	CallingClassifiers(training_set,testing_set)
+	
+	print "Classification results when train-N =900,test-N= 300"
+	training_set=feature_set[0:900]
+	testing_set=feature_set[901:1200]
+	CallingClassifiers(training_set,testing_set)
+	
+	print "Classification results when train-N =800,test-N= 500"
+	training_set=feature_set[0:800]
+	testing_set=feature_set[801:1300]
+	CallingClassifiers(training_set,testing_set)
+	
+	
+	
+	
+	
 		
 # checks if the sentence parsed contains negative values which can change the sentiment of sentence		
 def CheckForNOT(tokens):
@@ -266,6 +357,36 @@ def ReadReviews(path,featureSet):
 	# finding polarity of phrases obtained
 	phraseOpinions=GetOpinions(updatedPhrases,phraseOpinions)
 	return phraseOpinions
+	
+def CalculatingPrecisionRecall():
+	referenceList=[]
+	testList=[]
+	with open('Results.csv') as csvfile:
+		reader=csv.reader(csvfile)
+		for row in reader:
+			referenceList.append(row[0])
+	with open('NewGoldstandard.csv') as csvfile:
+		reader=csv.reader(csvfile)
+		for row in reader:
+			testList.append(row[0])
+	rlength=len(referenceList)
+	tlength=len(testList)
+	
+	#dividing code on the basis of number of phrases
+	i=1
+	for i in range(6):
+		n= int(rlength*(float(i)/5))
+		if n>0:
+		#n=n.split('.')[0]
+			print "calculating metrics for N=",n
+			PrintMetrics(referenceList[0:n],testList[0:n])
+	
+	
+	
+def PrintMetrics(referenceList,testList):			
+	print "precision-",nltk.metrics.precision(set(referenceList),set(testList))
+	print "recall-",nltk.metrics.recall(set(referenceList),set(testList))
+	print "fmeasure-",nltk.metrics.f_measure(set(referenceList),set(testList))
 
 if __name__ == '__main__':
 	#returns list of featureWords
@@ -277,14 +398,14 @@ if __name__ == '__main__':
 
 	path='./TestData/'
 	testphraseOpinions=ReadReviews(path,featureSet)
-	EvaluateUsingClassifiers()
+	
 	#combining training and testing set to furthur evaluate results
+	#print selectedFeatures
 	OpinionsSet=dict(trainphraseOpinions.items()+ testphraseOpinions.items())
+	EvaluateUsingClassifiers(OpinionsSet)
 	
 	WritingResults(OpinionsSet)
-	
-	
-	
+	CalculatingPrecisionRecall()
 	
 	
 	
