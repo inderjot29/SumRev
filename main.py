@@ -17,10 +17,11 @@ if __name__ == '__main__':
 	path='./InputData/Reviews.txt'
 	phraseOpinions=ReadReviews(path,featureSet,fout)
 	fout.close()
-	#combining training and testing set to furthur evaluate results
-	#print selectedFeatures
-	#OpinionsSet=dict(trainphraseOpinions.items()+ testphraseOpinions.items())
+	
+	#Write polarity results
 	WritingResults(phraseOpinions)
 	EvaluateUsingClassifiers(phraseOpinions)
 	CalculatingPrecisionRecall()
+	
+	#Predict Rating
 	PredictRating()
