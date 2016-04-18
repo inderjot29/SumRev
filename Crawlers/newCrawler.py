@@ -4,9 +4,6 @@ from bs4 import BeautifulSoup
 import re
 from threading import Thread
 
-#List of yelp urls to scrape
-#url=['https://www.yelp.ca/search?cflt=food&find_loc=Montr%C3%A9al%2C+QC%2C+Canada']
-#url=['https://www.yelp.ca/search?cflt=food&find_loc=Montr%C3%A9al%2C+QC%2C+Canada','https://www.yelp.ca/search?find_loc=Montr%C3%A9al,+QC,+Canada&start=10&cflt=food']
 i=0
 #function that will do actual scraping job
 def scrape(ur,f,frating):
@@ -14,15 +11,10 @@ def scrape(ur,f,frating):
 	html = urllib.urlopen(ur).read()
 	soup = BeautifulSoup(html,'html.parser')
 	reviewsText=[]
-	#restaurantColumns = soup.findAll("ul", { "class" : "best-of-columns_column ylist ylist-bordered" })
 	restaurantList=[]
-	#for column in restaurantColumns :
-		#restaurantList.append(soup.findAll("li", { "class" : "media-block media-block--12" }))
 	restaurantList=soup.findAll("a", { "class" : "biz-name" })
 	#del restaurantList[-8:]
 	for resturant in restaurantList:
-		#resturant=BeautifulSoup(resturant)
-		#rest = resturant.find("a",{ "class" : "biz-name" })
 		
 		if resturant.contents[0].name == 'span':
 			name=resturant.contents[0]
@@ -34,11 +26,7 @@ def scrape(ur,f,frating):
 		url=resturant['href']
 		if len(url)<150 :
 			restaurants[name]='http://www.yelp.ca'+url
-	#f=open('Reviews.txt','w+')
-	#frating=open('Ratings.txt','w+')
 	for restaurant in restaurants:
-		#print restaurant
-		#f.write("restaurant")
 		html1 = urllib.urlopen(restaurants[restaurant]).read()
 		soup1 = BeautifulSoup(html1,'html.parser')
 		
@@ -63,9 +51,6 @@ def scrape(ur,f,frating):
 				newUrl=restaurants[restaurant]+"?start="+str(counter)
 			if newUrl is None:
 		
-				# reviewsList=soup1.findAll('p',itemprop="description")
-				# for rating in soup1.findAll("div",{"class":"rating-very-large"}):
-					# ratingsList.append(rating.find('i')['title'])
 				for content in soup1.findAll("div",{"class":"review-content"}):
 					reviewsList.append(content.find('p',itemprop="description"))
 					ratingsList.append(content.find('meta',itemprop="ratingValue")['content'])
@@ -73,9 +58,6 @@ def scrape(ur,f,frating):
 			else:
 				html2 = urllib.urlopen(newUrl).read()
 				soup2 = BeautifulSoup(html2,'html.parser')
-				# reviewsList=soup2.findAll('p',itemprop="description")
-				# for rating in soup2.findAll("div",{"class":"rating-very-large"}):
-					# ratingsList.append(rating.find('i')['title'])
 				for content in soup2.findAll("div",{"class":"review-content"}):
 					reviewsList.append(content.find('p',itemprop="description"))
 					ratingsList.append(content.find('meta',itemprop="ratingValue")['content'])
@@ -90,16 +72,14 @@ def scrape(ur,f,frating):
 				frating.write("\n")
 
 		print "-------------------"
-		
-	#f.close()
-	#frating.close()	
-
+			
+#Open new files for collecting reviews and ratings
 f=open('Reviews.txt','w+')
 frating=open('Ratings.txt','w+')
 purl = 'https://www.yelp.ca/search?find_loc=Montr%C3%A9al,+QC,+Canada&start=';
 i = 1
 counter = 0
-for i in range(1,5):
+for i in range(1,15):
 	url = purl + str(counter) + '&cflt=food';
 	scrape(url,f,frating)
 	counter = counter + 10
