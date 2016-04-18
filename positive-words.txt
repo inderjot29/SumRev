@@ -110,6 +110,8 @@ angelic
 apotheosis
 appeal
 appealing
+appetizing
+appetising
 applaud
 appreciable
 appreciate
@@ -704,6 +706,7 @@ favor
 favorable
 favored
 favorite
+favourite
 favorited
 favour
 fearless
@@ -741,6 +744,8 @@ flattering
 flatteringly
 flawless
 flawlessly
+flavorful
+flavourful
 flexibility
 flexible
 flourish
@@ -1404,6 +1409,8 @@ purposeful
 quaint
 qualified
 qualify
+quality
+quick
 quicker
 quiet
 quieter
@@ -1875,6 +1882,7 @@ unfazed
 unfettered
 unforgettable
 unity
+unique
 unlimited
 unmatched
 unparalleled
@@ -1954,6 +1962,7 @@ well-regarded
 well-rounded
 well-run
 well-wishers
+well-steamed
 wellbeing
 whoa
 wholeheartedly
@@ -2004,3 +2013,14 @@ zeal
 zenith
 zest
 zippy
+special
+definitely
+tasty
+bilingual
+hearty
+exotic
+craving
+yum
+yummy
+aromatic
+unadulterated
